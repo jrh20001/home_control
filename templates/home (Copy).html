@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Control</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <nav class="nav-bar">
+    <a href="/a1/off">
+      <button class="button nav-btn {% if group == '1' %}active{% endif %}">Lights A</button>
+    </a>
+    <a href="/outdoor_side/off">
+      <button class="button nav-btn {% if group == '2' %}active{% endif %}">Lights B</button>
+    </a>
+    <a href="/spare8/off">
+      <button class="button nav-btn {% if group == '3' %}active{% endif %}">Sprinklers</button>
+    </a>
+  </nav>
+
+  <main class="grid-container">
+    {% for device_id, device_data in devices.items() %}
+    {% if device_data.group == group %}
+    <div class="device-card">
+      {% if device_data.state == 'off' %}
+      <a href="/{{device_id}}/on" style="flex-grow: 1;">
+        <button class="button inactive">{{ device_data.name }}</button>
+      </a>
+      {% else %}
+      <a href="/{{device_id}}/off" style="flex-grow: 1;">
+        <button class="button active">{{ device_data.name }}</button>
+      </a>
+      {% endif %}
+
+      {% if device_data.dimr == '1' %}
+      <div class="device-controls">
+        <a href="/{{device_id}}/bright 100">
+          <button class="button control-btn">+</button>
+        </a>
+        <a href="/{{device_id}}/dim 100">
+          <button class="button control-btn">-</button>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+  </main>
+
+  {% if group == '3' %}
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="/config">
+      <button class="button nav-btn"
+        style="border-color: var(--warning-color); color: var(--warning-color);">Configuration</button>
+    </a>
+  </div>
+  {% endif %}
+
+  {% if message %}
+  <div class="message">
+    {{ message }}
+  </div>
+  {% endif %}
+</body>
+
+</html>

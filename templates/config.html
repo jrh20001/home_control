@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sprinkler Configuration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="config-container">
+        <h2>Sprinkler Timers</h2>
+
+        <form method="POST">
+            <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                <input type="checkbox" id="Timers" name="Timers" {% if sprinklers.get('Timers')=='ON' %}checked{% endif
+                    %}>
+                <label for="Timers" style="font-size: 1.2rem; font-weight: bold;">Master Enable</label>
+            </div>
+
+            {% for i in range(1, 7) %}
+            {% set spr_key = 'Sprinkler' ~ i %}
+            {% set spr_data = sprinklers.get(spr_key, {}) %}
+
+            <div class="sprinkler-row">
+                <div style="flex: 1; min-width: 200px;">
+                    <strong>{{ spr_data.get('sprinkler_name', 'Sprinkler ' ~ i) }}</strong>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <input type="checkbox" id="Arm{{i}}" name="Arm{{i}}" {% if spr_data.get('Arm')==1 %}checked{% endif
+                        %}>
+                    <label for="Arm{{i}}">Arm</label>
+                </div>
+
+                <input type="time" id="Time{{i}}" name="Time{{i}}" value="{{ spr_data.get('Time', '00:00') }}">
+
+                <select id="Duration{{i}}" name="Duration{{i}}">
+                    {% for j in range(1, 61) %}
+                    <option value="{{ j }}" {% if spr_data.get('Duration')==j %}selected{% endif %}>{{ j }} min</option>
+                    {% endfor %}
+                </select>
+
+                <div class="days-selector">
+                    {% set days = spr_data.get('Days', '0000000') %}
+                    {% for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <label for="Days{{i}}{{ loop.index0 }}" style="font-size: 0.8rem;">{{ day }}</label>
+                        <input type="checkbox" id="Days{{i}}{{ loop.index0 }}" name="Days{{i}}{{ loop.index0 }}" {% if
+                            days[loop.index0]=='1' %}checked{% endif %}>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <input type="submit" value="SAVE CONFIGURATION" class="button save-btn">
+        </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/spare8/off">
+                <button class="button nav-btn">Return to Controls</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

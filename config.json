@@ -1,0 +1,368 @@
+{
+    "mqtt": {
+        "broker": "hcontrol.local",
+        "port": 1883,
+        "topic_cmnd": "cmnd/tasmota_sprinklers/",
+        "topic_stat": "stat/tasmota_sprinklers/RESULT"
+    },
+    "devices": {
+        "a1": {
+            "name": "Kitchen",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a2": {
+            "name": "Dining",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a3": {
+            "name": "Living south",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a4": {
+            "name": "Living north",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a5": {
+            "name": "Family",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a15": {
+            "name": "Family south",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a16": {
+            "name": "Family north",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a7": {
+            "name": "Outdoor front",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a6": {
+            "name": "Outdoor back",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "1"
+        },
+        "a14": {
+            "name": "Garage",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a11": {
+            "name": "Renee lamp",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a12": {
+            "name": "Jerry lamp",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "a13": {
+            "name": "Art lamp",
+            "state": "off",
+            "group": "1",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "outdoor_side": {
+            "name": "Garage side",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "light_kitchen_cabinet": {
+            "name": "Kitchen cabinet",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "light_china_cabinet": {
+            "name": "Dining cabinet",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "light_builtin_cabinet": {
+            "name": "Dining builtin",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "light_corner_cabinet": {
+            "name": "Living cabinet",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "christmas_front": {
+            "name": "Christmas front",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "christmas_garage": {
+            "name": "Christmas side",
+            "state": "off",
+            "group": "2",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "front_north": {
+            "name": "Front north",
+            "state": "off",
+            "group": "3",
+            "swno": "3",
+            "dimr": "0"
+        },
+        "front_south": {
+            "name": "Front south",
+            "state": "off",
+            "group": "3",
+            "swno": "2",
+            "dimr": "0"
+        },
+        "front_drip": {
+            "name": "Front drip",
+            "state": "off",
+            "group": "3",
+            "swno": "4",
+            "dimr": "0"
+        },
+        "back_north": {
+            "name": "Back east",
+            "state": "off",
+            "group": "3",
+            "swno": "1",
+            "dimr": "0"
+        },
+        "back_south": {
+            "name": "Back west",
+            "state": "off",
+            "group": "3",
+            "swno": "5",
+            "dimr": "0"
+        },
+        "back_drip": {
+            "name": "Back drip",
+            "state": "off",
+            "group": "3",
+            "swno": "6",
+            "dimr": "0"
+        },
+        "spare7": {
+            "name": "Spare7",
+            "state": "off",
+            "group": "3",
+            "swno": "7",
+            "dimr": "0"
+        },
+        "spare8": {
+            "name": "Spare8",
+            "state": "off",
+            "group": "3",
+            "swno": "8",
+            "dimr": "0"
+        }
+    },
+    "location": {
+        "latitude": 37.37006,
+        "longitude": -122.08839
+    },
+    "schedule": [
+        {
+            "time": "sunset",
+            "offset": "-00:30:00",
+            "device": "a1",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:30:10",
+            "device": "a2",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:30:20",
+            "device": "a3",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:30:30",
+            "device": "a4",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:30:40",
+            "device": "a5",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:31:10",
+            "device": "a7",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:31:20",
+            "device": "a6",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:31:30",
+            "device": "a14",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:31:40",
+            "device": "a11",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:31:50",
+            "device": "a12",
+            "action": "on"
+        },
+        {
+            "time": "sunset",
+            "offset": "-00:32:00",
+            "device": "a13",
+            "action": "on"
+        },
+        {
+            "time": "today",
+            "offset": "22:29:00",
+            "device": "a1",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:29:10",
+            "device": "a2",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:29:20",
+            "device": "a3",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:29:30",
+            "device": "a4",
+            "action": "off"
+        },
+        {
+            "time": "tomorrow",
+            "offset": "02:00:00",
+            "device": "a5",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "23:59:20",
+            "device": "a15",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "23:59:30",
+            "device": "a16",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "23:00:00",
+            "device": "a7",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:15:10",
+            "device": "a6",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "23:30:00",
+            "device": "a14",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:30:10",
+            "device": "a11",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:30:20",
+            "device": "a12",
+            "action": "off"
+        },
+        {
+            "time": "today",
+            "offset": "22:30:30",
+            "device": "a13",
+            "action": "off"
+        },
+        {
+            "time": "sunrise",
+            "offset": "-00:30:00",
+            "device": "a5",
+            "action": "on"
+        },
+        {
+            "time": "sunrise",
+            "offset": "+00:30:00",
+            "device": "a5",
+            "action": "off"
+        }
+    ]
+}

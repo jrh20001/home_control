@@ -1,0 +1,198 @@
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --primary-color: #bb86fc;
+    --secondary-color: #03dac6;
+    --error-color: #cf6679;
+    --on-bg-color: #ffffff;
+    --on-surface-color: #e0e0e0;
+    --on-primary-color: #000000;
+    --success-color: #4caf50;
+    --warning-color: #ff9800;
+    
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    
+    --border-radius: 8px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--on-bg-color);
+    font-family: var(--font-family);
+    margin: 0;
+    padding: var(--spacing-md);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* Buttons */
+.button {
+    background-color: var(--surface-color);
+    color: var(--on-surface-color);
+    padding: var(--spacing-md);
+    border: 1px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.2s ease;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.button:hover {
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
+    transform: translateY(-2px);
+}
+
+.button.active {
+    background-color: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+    max-width: 200px; /* Limits the width */
+    margin-right: auto; /* Pushes it to the left if you want it left-aligned */
+}
+
+.button.inactive {
+    background-color: var(--surface-color);
+    color: var(--on-surface-color);
+    border-color: var(--error-color);
+    max-width: 200px; /* Limits the width */
+    margin-right: auto; /* Pushes it to the left if you want it left-aligned */
+}
+
+.button.nav-btn {
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin: var(--spacing-sm);
+    width: auto;
+}
+
+/* Grid Layout */
+.grid-container {
+    display: grid;
+    /*grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));*/
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    /*max_width: 1200px;*/
+    max_width: 600px;
+    margin: 0 auto;
+}
+/*
+.device-card {
+    background-color: var(--surface-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+*/
+.device-card {
+    background-color: var(--surface-color);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    display: flex;
+    
+    /* CHANGE: Align items to the start (left) instead of spacing them apart */
+    justify-content: flex-start; 
+    
+    /* ADD: Creates space between the name button and the + / - buttons */
+    gap: var(--spacing-md); 
+    
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.device-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.control-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 1.2rem;
+    min-width: 40px;
+}
+
+/* Config Form */
+.config-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--surface-color);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+}
+
+.sprinkler-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid #333;
+}
+
+.sprinkler-row:last-child {
+    border-bottom: none;
+}
+
+.days-selector {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+input[type="checkbox"] {
+    accent-color: var(--primary-color);
+    width: 20px;
+    height: 20px;
+}
+
+input[type="time"], select {
+    background-color: var(--bg-color);
+    color: var(--on-bg-color);
+    border: 1px solid var(--primary-color);
+    padding: var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.save-btn {
+    background-color: var(--success-color);
+    color: white;
+    width: 100%;
+    margin-top: var(--spacing-lg);
+    font-weight: bold;
+}
+
+/* Navigation */
+.nav-bar {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.message {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: rgba(3, 218, 198, 0.1);
+    border-radius: var(--border-radius);
+}

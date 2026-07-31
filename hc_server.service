@@ -1,0 +1,14 @@
+[Unit]
+Description=Home Control Server
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/home/ubuntu/home_control
+ExecStart=/usr/bin/python3 /home/ubuntu/home_control/hc_server.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

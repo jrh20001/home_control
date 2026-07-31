@@ -1,0 +1,23 @@
+
+sudo chown -R $USER ~/.target_dir
+
+sudo arp-scan --interface=eth0 --localnet
+
+atq     list queue of at commands
+ 
+python 
+# delete 'at' queue
+os.system('for i in $(atq | cut -f 1); do atrm $i; done') 
+
+
+echo rf a1 on | nc -N localhost 1099
+
+sudo reboot
+
+#shutdown hc_server.py
+ps -ea | grep python
+sudo kill 
+
+sudo /usr/bin/python3 hc_server.py
+
+

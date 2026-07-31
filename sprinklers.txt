@@ -1,0 +1,13 @@
+timer  sw   sprinkler     on    off
+  1         1    back east      0  
+  2         1    back east             4
+  3         5    back west    10
+  4         5    back west           14
+  5         6    back drip      20
+  6         6    back drip             26 
+  7         2    front south   30
+  8         2    front south          34 
+  9         3    front north   40
+  10        3    front north          44
+  11        4    front drip      50
+  12        4    front drip             56
