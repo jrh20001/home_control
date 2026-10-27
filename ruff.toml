@@ -1,0 +1,14 @@
+line-length = 100
+target-version = "py310"
+
+[lint]
+select = ["E4", "E7", "E9", "F", "W", "B", "C4", "I", "PL", "RUF", "SIM", "UP"]
+ignore = [
+    # Deliberate: MQTT payloads, device JSON, files and subprocesses are
+    # untrusted/external, so handlers log the error and keep serving.
+    "BLE001",
+]
+
+[lint.per-file-ignores]
+# suntime is stubbed in sys.modules before importing the module under test
+"test_update_crontab.py" = ["E402"]

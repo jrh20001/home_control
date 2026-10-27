@@ -210,67 +210,67 @@
     "schedule": [
         {
             "time": "sunset",
-            "offset": "-00:30:00",
+            "offset": "00:00:00",
             "device": "a1",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:30:10",
+            "offset": "00:00:10",
             "device": "a2",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:30:20",
+            "offset": "00:00:20",
             "device": "a3",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:30:30",
+            "offset": "00:00:30",
             "device": "a4",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:30:40",
+            "offset": "00:00:40",
             "device": "a5",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:31:10",
+            "offset": "-00:01:10",
             "device": "a7",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:31:20",
+            "offset": "-00:01:20",
             "device": "a6",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:31:30",
+            "offset": "-00:01:30",
             "device": "a14",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:31:40",
+            "offset": "-00:01:40",
             "device": "a11",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:31:50",
+            "offset": "-00:01:50",
             "device": "a12",
             "action": "on"
         },
         {
             "time": "sunset",
-            "offset": "-00:32:00",
+            "offset": "-00:02:00",
             "device": "a13",
             "action": "on"
         },
@@ -350,18 +350,6 @@
             "time": "today",
             "offset": "22:30:30",
             "device": "a13",
-            "action": "off"
-        },
-        {
-            "time": "sunrise",
-            "offset": "-00:30:00",
-            "device": "a5",
-            "action": "on"
-        },
-        {
-            "time": "sunrise",
-            "offset": "+00:30:00",
-            "device": "a5",
             "action": "off"
         }
     ]

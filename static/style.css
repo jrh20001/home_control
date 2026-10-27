@@ -196,3 +196,54 @@ input[type="time"], select {
     background-color: rgba(3, 218, 198, 0.1);
     border-radius: var(--border-radius);
 }
+
+/* Lights B configuration rows */
+.light-head {
+    flex: 1 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--spacing-sm);
+}
+
+.device-meta {
+    color: #9e9e9e;
+    font-size: 0.85rem;
+}
+
+.warn {
+    color: var(--warning-color);
+    font-size: 0.85rem;
+}
+
+.timer-line {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.timer-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 72px;
+}
+
+/* Lights A schedule editor */
+input[type="text"] {
+    background-color: var(--bg-color);
+    color: var(--on-bg-color);
+    border: 1px solid var(--primary-color);
+    padding: var(--spacing-sm);
+    border-radius: 4px;
+}
+
+.message.error {
+    color: var(--error-color);
+    background-color: rgba(207, 102, 121, 0.1);
+}
+
+code {
+    color: var(--secondary-color);
+}

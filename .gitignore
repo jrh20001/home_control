@@ -2,3 +2,10 @@ __pycache__/
 *.pyc
 *.pyo
 *.log
+*.log.*
+config.json.bak.*
+deploy_backup_*/
+light_ip_cache.json
+.venv/
+.pytest_cache/
+.ruff_cache/

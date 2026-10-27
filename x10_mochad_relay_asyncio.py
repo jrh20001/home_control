@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """x10_mochd_relay_asyncio2.py
 
 monitor X10 CM15 USB receiver for received commands using mochad socket.
@@ -9,7 +8,8 @@ different house address
 specifically: for Bert alert, translate C5 to A
 """
 
-import asyncio, socket
+import asyncio
+import socket
 
 host = 'hcontrol.local'
 port = 1099
@@ -26,19 +26,21 @@ async def recv_data(loop, soc):
         mdir = resp[15:17]
         mtyp = resp[32:35]
         if (mdir.lower() =='rx')  and (mtyp.lower() == trig):
-            await loop.create_task(send_data(loop, soc))
+            loop.create_task(send_data(loop, soc))
         print(mdir, resp.split('\n')[0])
 
 async def send_data(loop, soc):
     await loop.sock_sendall(soc, mess)
 
 async def main():
-    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    soc.connect((host, port))
-    soc.setblocking(False)
     loop = asyncio.get_event_loop()
-    task = loop.create_task(recv_data(loop, soc))
-    await asyncio.gather(task)
+    soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    try:
+        await loop.sock_connect(soc, (host, port))
+        soc.setblocking(False)
+        await recv_data(loop, soc)
+    finally:
+        soc.close()
 
 asyncio.run(main())
 

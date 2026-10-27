@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights A Configuration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="config-container">
+        <h2>Lights A Schedule</h2>
+        <p class="device-meta" style="text-align: center; margin-top: 0;">
+            Schedule is stored in <code>config.json</code> and compiled into <code>at</code> jobs.<br>
+            Hours/minutes shift the base time; the seconds value is the RF stagger delay.<br>
+            {% if sunrise and sunset %}
+            Today: sunrise {{ sunrise }}, sunset {{ sunset }}
+            {% else %}
+            Sun times unavailable (times shown without "next run")
+            {% endif %}
+        </p>
+
+        {% if message %}
+        <div class="message {{ 'error' if message_kind == 'error' else '' }}">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% for light in lights %}
+            <div class="sprinkler-row">
+                <div class="light-head">
+                    <strong>{{ light.name }}</strong>
+                    <span class="device-meta">{{ light.dev }} &middot; group 1 (RF)</span>
+                </div>
+
+                {% for e in light.entries %}
+                <div class="timer-line">
+                    <select name="sched_{{ e.idx }}_action">
+                        <option value="on" {% if e.action=='on' %}selected{% endif %}>On</option>
+                        <option value="off" {% if e.action=='off' %}selected{% endif %}>Off</option>
+                    </select>
+                    <select name="sched_{{ e.idx }}_base">
+                        {% for b in base_times %}
+                        <option value="{{ b }}" {% if e.base==b %}selected{% endif %}>{{ b|capitalize }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="sched_{{ e.idx }}_sign">
+                        <option value="+" {% if e.sign=='+' %}selected{% endif %}>+</option>
+                        <option value="-" {% if e.sign=='-' %}selected{% endif %}>&minus;</option>
+                    </select>
+                    <input type="text" name="sched_{{ e.idx }}_offset" value="{{ e.offset }}" size="8"
+                        pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" title="HH:MM:SS">
+                    <label class="timer-label">
+                        <input type="checkbox" name="sched_{{ e.idx }}_delete"> delete
+                    </label>
+                    {% if e.next_run %}
+                    <span class="device-meta">next {{ e.next_run }}{% if e.stagger %} +{{ e.stagger }}s{% endif %}</span>
+                    {% endif %}
+                    {% if e.invalid %}
+                    <span class="warn">unrecognised entry</span>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div class="timer-line">
+                    <span class="device-meta">add:</span>
+                    <select name="new_{{ light.dev }}_action">
+                        <option value="on" selected>On</option>
+                        <option value="off">Off</option>
+                    </select>
+                    <select name="new_{{ light.dev }}_base">
+                        {% for b in base_times %}
+                        <option value="{{ b }}" {% if b=='sunset' %}selected{% endif %}>{{ b|capitalize }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="new_{{ light.dev }}_sign">
+                        <option value="+" selected>+</option>
+                        <option value="-" >&minus;</option>
+                    </select>
+                    <input type="text" name="new_{{ light.dev }}_offset" value="" size="8" placeholder="HH:MM:SS"
+                        pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}" title="HH:MM:SS">
+                    <span class="device-meta">blank = no entry</span>
+                </div>
+            </div>
+            {% endfor %}
+
+            <input type="submit" value="SAVE CONFIGURATION" class="button save-btn">
+        </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/a1/off">
+                <button class="button nav-btn">Return to Controls</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lights B Configuration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="config-container">
+        <h2>Lights B Timers</h2>
+
+        {% if message %}
+        <div class="message {{ 'error' if message_kind == 'error' else '' }}">{{ message }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% for light in lights %}
+            {% set d = light.dev %}
+            <div class="sprinkler-row">
+                <div class="light-head">
+                    <strong>{{ light.name }}</strong>
+                    <span class="device-meta">{{ light.host }} &middot; {{ light.ip or 'IP unknown' }}</span>
+                    {% if not light.reachable %}
+                    <span class="warn">unreachable &ndash; showing last known values, will not be saved</span>
+                    {% endif %}
+                </div>
+
+                <div class="timer-line">
+                    <label class="timer-label">
+                        <input type="checkbox" id="timers_{{ d }}" name="timers_{{ d }}" {% if light.Timers=='ON'
+                            %}checked{% endif %} {% if not light.reachable %}disabled{% endif %}>
+                        Enable
+                    </label>
+                    {% if light.duration %}
+                    <span class="device-meta">runs {{ light.duration }} min</span>
+                    {% endif %}
+                </div>
+
+                <div class="timer-line">
+                    <label class="timer-label">
+                        <input type="checkbox" id="onen_{{ d }}" name="onen_{{ d }}" {% if light.on.Enable
+                            %}checked{% endif %} {% if not light.reachable %}disabled{% endif %}>
+                        On
+                    </label>
+                    <select name="onmode_{{ d }}" {% if not light.reachable %}disabled{% endif %}>
+                        <option value="0" {% if light.on.Mode==0 %}selected{% endif %}>At time</option>
+                        <option value="1" {% if light.on.Mode==1 %}selected{% endif %}>Sunrise</option>
+                        <option value="2" {% if light.on.Mode==2 %}selected{% endif %}>Sunset</option>
+                    </select>
+                    <select name="onsign_{{ d }}" {% if not light.reachable %}disabled{% endif %}>
+                        <option value="+" {% if light.on.Sign=='+' %}selected{% endif %}>+</option>
+                        <option value="-" {% if light.on.Sign=='-' %}selected{% endif %}>&minus;</option>
+                    </select>
+                    <input type="time" name="ontime_{{ d }}" value="{{ light.on.Time }}" {% if not light.reachable
+                        %}disabled{% endif %}>
+                    <input type="hidden" name="onwindow_{{ d }}" value="{{ light.on.Window }}">
+                    <input type="hidden" name="onrepeat_{{ d }}" value="{{ light.on.Repeat }}">
+                </div>
+
+                <div class="timer-line">
+                    <label class="timer-label">
+                        <input type="checkbox" id="offen_{{ d }}" name="offen_{{ d }}" {% if light.off.Enable
+                            %}checked{% endif %} {% if not light.reachable %}disabled{% endif %}>
+                        Off
+                    </label>
+                    <select name="offmode_{{ d }}" {% if not light.reachable %}disabled{% endif %}>
+                        <option value="0" {% if light.off.Mode==0 %}selected{% endif %}>At time</option>
+                        <option value="1" {% if light.off.Mode==1 %}selected{% endif %}>Sunrise</option>
+                        <option value="2" {% if light.off.Mode==2 %}selected{% endif %}>Sunset</option>
+                    </select>
+                    <select name="offsign_{{ d }}" {% if not light.reachable %}disabled{% endif %}>
+                        <option value="+" {% if light.off.Sign=='+' %}selected{% endif %}>+</option>
+                        <option value="-" {% if light.off.Sign=='-' %}selected{% endif %}>&minus;</option>
+                    </select>
+                    <input type="time" name="offtime_{{ d }}" value="{{ light.off.Time }}" {% if not light.reachable
+                        %}disabled{% endif %}>
+                    <input type="hidden" name="offwindow_{{ d }}" value="{{ light.off.Window }}">
+                    <input type="hidden" name="offrepeat_{{ d }}" value="{{ light.off.Repeat }}">
+                </div>
+
+                <div class="days-selector">
+                    {% for day in ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] %}
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <label for="days_{{ d }}{{ loop.index0 }}" style="font-size: 0.8rem;">{{ day }}</label>
+                        <input type="checkbox" id="days_{{ d }}{{ loop.index0 }}" name="days_{{ d }}{{ loop.index0 }}"
+                            {% if light.days[loop.index0]=='1' %}checked{% endif %} {% if not light.reachable
+                            %}disabled{% endif %}>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <input type="submit" value="SAVE CONFIGURATION" class="button save-btn">
+        </form>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="/outdoor_side/off">
+                <button class="button nav-btn">Return to Controls</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

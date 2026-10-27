@@ -12,6 +12,10 @@
     <div class="config-container">
         <h2>Sprinkler Timers</h2>
 
+        {% if message %}
+        <div class="message {{ 'error' if message_kind == 'error' else '' }}">{{ message }}</div>
+        {% endif %}
+
         <form method="POST">
             <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
                 <input type="checkbox" id="Timers" name="Timers" {% if sprinklers.get('Timers')=='ON' %}checked{% endif

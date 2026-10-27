@@ -4,11 +4,15 @@ After=network.target
 
 [Service]
 Type=simple
-User=root
+# Runs unprivileged; only the capability needed to bind port 80 is granted.
+User=ubuntu
+Group=ubuntu
 WorkingDirectory=/home/ubuntu/home_control
 ExecStart=/usr/bin/python3 /home/ubuntu/home_control/hc_server.py
 Restart=always
 RestartSec=10
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=multi-user.target

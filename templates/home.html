@@ -50,9 +50,9 @@
     {% endfor %}
   </main>
 
-  {% if group == '3' %}
+  {% if group in ['1', '2', '3'] %}
   <div style="text-align: center; margin-top: 20px;">
-    <a href="/config">
+    <a href="{% if group == '1' %}/config_lights_a{% elif group == '2' %}/config_lights{% else %}/config{% endif %}">
       <button class="button nav-btn"
         style="border-color: var(--warning-color); color: var(--warning-color);">Configuration</button>
     </a>
